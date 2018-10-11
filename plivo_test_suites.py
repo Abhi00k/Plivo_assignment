@@ -28,7 +28,7 @@ def test_suite():
         test_suite.addTest(Homepage(homepage_test_name))
 
     # run the suite
-    unittest.TextTestRunner().run(test_suite)
+    unittest.TextTestRunner(verbosity=2).run(test_suite)
     # open the report file
     outfile = open("SeleniumPythonTestSummary.html", "w")
 
