@@ -58,7 +58,6 @@ class Homepage(unittest.TestCase):
 
         # click on Let's get started button
         driver.find_element_by_xpath('//*[@id="intro-dialog-cont"]/div[2]/button').click()
-        time.sleep(4)
 
         #click on new page and some assertion check
         third_screen = self.driver.find_element_by_xpath('//*[@id="add-page"]')
@@ -78,12 +77,12 @@ class Homepage(unittest.TestCase):
 
         # click to messaging component on the left module
         driver.find_element_by_xpath('//*[@id="accordion"]/h3[4]/a').click()
-        time.sleep(4)
+        time.sleep(2)
 
         # drag send an email componet from left module and palce the require position
         drag_send_sms = driver.find_element_by_xpath('//*[@id="accordion"]/div[4]/ul/li[3]')
         ActionChains(driver).drag_and_drop_by_offset(drag_send_sms, 690, 30).perform()
-
+        time.sleep(2)
         # here connector connect to the start and send sms
         start_point = driver.find_element_by_xpath('//div[@id="tabs-2"]/div[2]/div[5]/div')
         sms_point = driver.find_element_by_xpath('//div[@id="tabs-2"]/div[3]/div[2]/div')
@@ -94,11 +93,11 @@ class Homepage(unittest.TestCase):
         driver.find_element_by_xpath('//*[@id="module-2"]/div[1]/div[3]/div/div[1]/div[2]/textarea').send_keys(cc.PHONE_NUMBER)
         driver.find_element_by_xpath('//*[@id="module-2"]/div[1]/div[3]/div/div[2]/div/table/tbody/tr/td[1]/div/textarea').clear()
         driver.find_element_by_xpath('//*[@id="module-2"]/div[1]/div[3]/div/div[2]/div/table/tbody/tr/td[1]/div/textarea').send_keys(cc.TEXT_MASSAGE)
-        time.sleep(3)
 
         #drag send an email componet from left module and palce the require position
         drag_send_email = driver.find_element_by_xpath('//*[@id="accordion"]/div[4]/ul/li[2]')
         ActionChains(driver).drag_and_drop_by_offset(drag_send_email, 1000, 170).perform()
+        time.sleep(2)
 
         # fill the required field
         driver.find_element_by_xpath('//*[@id="module-3"]/div[1]/div[3]/div/div[1]/div[1]/div[2]/input').send_keys(cc.SMTP_HOST)
@@ -117,10 +116,12 @@ class Homepage(unittest.TestCase):
 
         # click to basic component on the left module
         driver.find_element_by_xpath('//*[@id="accordion"]/h3[1]').click()
+        time.sleep(2)
 
         # drag exit app_1 componet from left module and palce the require position
         source_exit_app_1 = driver.find_element_by_xpath('//*[@id="accordion"]/div[1]/ul/li[1]')
         ActionChains(driver).drag_and_drop_by_offset(source_exit_app_1, 420, 300).perform()
+        time.sleep(2)
 
         # here connector connect from sent sms to exit_app_1
         sent_sms_source = driver.find_element_by_xpath('//div[@id="module-2"]/div/div[3]/div/div[3]/div[1]')
@@ -129,6 +130,7 @@ class Homepage(unittest.TestCase):
 
         # drag exit app_2 componet from left module and palce the require position
         ActionChains(driver).drag_and_drop_by_offset(source_exit_app_1, 540, 450).perform()
+        time.sleep(2)
 
         # here connector connect from sent email to exit_app_2
         sent_email = driver.find_element_by_xpath('//div[@id="module-3"]/div/div[3]/div/div[4]/div[1]')
@@ -137,13 +139,14 @@ class Homepage(unittest.TestCase):
 
         # drag exit app_3 componet from left module and palce the require position
         ActionChains(driver).drag_and_drop_by_offset(source_exit_app_1, 1290, 410).perform()
+        time.sleep(2)
 
         # here connector connect from not sent email to exit_app_3
         not_sent_email = driver.find_element_by_xpath('//div[@id="module-3"]/div/div[3]/div/div[4]/div[2]')
         exit_app_3 = driver.find_element_by_xpath('//div[@id="module-6"]/div[2]/div[1]')
         ActionChains(driver).drag_and_drop(not_sent_email, exit_app_3).perform()
 
-        time.sleep(4)
+        print "automation test completed"
 
 
 
@@ -174,7 +177,8 @@ class Homepage(unittest.TestCase):
             self.accept_next_alert = True
 
     def tearDown(self):
-        # self.driver.quit()
+        # self.driver.stop_client()
+        self.driver.quit()
         self.assertEqual([], self.verificationErrors)
 
 
