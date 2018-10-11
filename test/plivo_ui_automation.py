@@ -145,6 +145,7 @@ class Homepage(unittest.TestCase):
         not_sent_email = driver.find_element_by_xpath('//div[@id="module-3"]/div/div[3]/div/div[4]/div[2]')
         exit_app_3 = driver.find_element_by_xpath('//div[@id="module-6"]/div[2]/div[1]')
         ActionChains(driver).drag_and_drop(not_sent_email, exit_app_3).perform()
+        time.sleep(5)
 
         print "automation test completed"
 
